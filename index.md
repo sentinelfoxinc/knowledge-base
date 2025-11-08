@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Sentinelfox Knowledge Hub"
-description: "Internal documentation portal for Sentinelfox team"
 ---
 
 # 🧠 Sentinelfox Knowledge Hub
