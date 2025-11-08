@@ -14,8 +14,8 @@ title: Devops Roadmap
 
 | # | Module | Description |
 |---|---------|-------------|
-| 1 | 🐧 **Linux Fundamentals** | Learn Linux commands, file systems, permissions, and process management. |
-| 2 | 🌐 **Networking Basics** | Understand IPs, DNS, routing, and basic troubleshooting. |
+| 1 | **Linux Fundamentals** | Learn Linux commands, file systems, permissions, and process management. |
+| 2 | **Networking Basics** | Understand IPs, DNS, routing, and basic troubleshooting. |
 | 3 | 🔧 **Version Control (Git)** | Work with branches, merges, and collaborative workflows. |
 | 4 | 🐍 **Programming for Automation** | Automate tasks using Python or Bash scripting. |
 | 5 | ☁️ **Cloud Fundamentals** | Deploy and manage workloads on AWS, Azure, or GCP. |
