@@ -14,35 +14,89 @@
       <!-- Sidebar -->
       <aside class="kb-sidebar">
         <div class="kb-sidebar-header">
-          <h2>📚 Knowledge Base</h2>
+          <div class="company-brand">
+            <div class="company-logo">🦊</div>
+            <div class="company-info">
+              <h2>SentinelFox</h2>
+              <p class="company-tagline">Knowledge Base</p>
+            </div>
+          </div>
         </div>
+        
         <nav class="kb-sidebar-nav">
-          <ul>
-            <li><a href="{{ '/' | relative_url }}" class="kb-nav-link {% if page.url == '/' %}active{% endif %}">🏠 Home</a></li>
-            
-            <li class="kb-nav-section">
-              <div class="kb-section-header">☁️ AWS</div>
-              <ul class="kb-submenu">
-                <li><a href="{{ '/aws/vpc' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws/vpc' %}active{% endif %}">VPC</a></li>
-                <li><a href="{{ '/aws/rds' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws/rds' %}active{% endif %}">RDS</a></li>
-              </ul>
-            </li>
-            
-            <li class="kb-nav-section">
-              <div class="kb-section-header">🛠️ Terraform</div>
-              <ul class="kb-submenu">
-                <li><a href="{{ '/terraform/workspace' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform/workspace' %}active{% endif %}">Workspace</a></li>
-                <li><a href="{{ '/terraform/state-file' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform/state-file' %}active{% endif %}">State File</a></li>
-              </ul>
-            </li>
-          </ul>
+          <div class="nav-section">
+            <h3 class="section-title">Navigation</h3>
+            <ul>
+              <li><a href="{{ '/' | relative_url }}" class="kb-nav-link {% if page.url == '/' %}active{% endif %}">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-text">Home</span>
+              </a></li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <h3 class="section-title">Cloud Services</h3>
+            <ul>
+              <li class="kb-nav-section">
+                <a href="#aws" class="kb-nav-parent">
+                  <span class="nav-icon">☁️</span>
+                  <span class="nav-text">AWS</span>
+                  <span class="nav-arrow">›</span>
+                </a>
+                <ul class="kb-submenu">
+                  <li><a href="{{ '/aws/vpc' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws/vpc' %}active{% endif %}">
+                    <span class="nav-icon">🔗</span>
+                    <span class="nav-text">VPC</span>
+                  </a></li>
+                  <li><a href="{{ '/aws/rds' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws/rds' %}active{% endif %}">
+                    <span class="nav-icon">💾</span>
+                    <span class="nav-text">RDS</span>
+                  </a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="nav-section">
+            <h3 class="section-title">Infrastructure</h3>
+            <ul>
+              <li class="kb-nav-section">
+                <a href="#terraform" class="kb-nav-parent">
+                  <span class="nav-icon">🛠️</span>
+                  <span class="nav-text">Terraform</span>
+                  <span class="nav-arrow">›</span>
+                </a>
+                <ul class="kb-submenu">
+                  <li><a href="{{ '/terraform/workspace' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform/workspace' %}active{% endif %}">
+                    <span class="nav-icon">📁</span>
+                    <span class="nav-text">Workspace</span>
+                  </a></li>
+                  <li><a href="{{ '/terraform/state-file' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform/state-file' %}active{% endif %}">
+                    <span class="nav-icon">📄</span>
+                    <span class="nav-text">State File</span>
+                  </a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </nav>
+
+        <div class="kb-sidebar-footer">
+          <div class="sidebar-company">
+            <p class="company-name">SentinelFox Private Ltd</p>
+            <p class="company-copyright">© 2024 All rights reserved</p>
+          </div>
+        </div>
       </aside>
 
       <!-- Main Content -->
       <main class="kb-main">
         <div class="kb-main-content">
           <header class="kb-header">
+            <button class="kb-mobile-menu-btn">
+              <span>☰</span>
+              Menu
+            </button>
             <h1 class="kb-title">{{ page.title | default: site.title }}</h1>
             {% if site.github.is_project_page %}
               <p class="kb-github-link"><a href="{{ site.github.repository_url }}">View on GitHub</a></p>
@@ -54,31 +108,53 @@
           </article>
 
           <footer class="kb-footer">
-            <p><small>Hosted on GitHub Pages</small></p>
+            <div class="footer-content">
+              <div class="footer-company">
+                <p class="company-name">SentinelFox Private Ltd</p>
+                <p class="company-tagline">Secure. Innovative. Reliable.</p>
+              </div>
+              <div class="footer-links">
+                <a href="{{ '/' | relative_url }}">Home</a>
+                <span class="divider">•</span>
+                <a href="{{ site.github.repository_url }}">GitHub</a>
+                <span class="divider">•</span>
+                <a href="#">Contact</a>
+              </div>
+              <p class="copyright">© 2024 SentinelFox Private Ltd. All rights reserved.</p>
+            </div>
           </footer>
         </div>
       </main>
     </div>
 
     <script>
-    // Mobile menu functionality
     document.addEventListener('DOMContentLoaded', function() {
-      // Add mobile menu button
-      const mobileMenuBtn = document.createElement('button');
-      mobileMenuBtn.className = 'kb-mobile-menu-btn';
-      mobileMenuBtn.innerHTML = '📖 Menu';
-      document.querySelector('.kb-header').prepend(mobileMenuBtn);
+      // Mobile menu functionality
+      const mobileMenuBtn = document.querySelector('.kb-mobile-menu-btn');
+      const sidebar = document.querySelector('.kb-sidebar');
       
       mobileMenuBtn.addEventListener('click', function() {
-        document.querySelector('.kb-sidebar').classList.toggle('mobile-open');
+        sidebar.classList.toggle('mobile-open');
         document.body.classList.toggle('menu-open');
       });
       
       // Close menu when clicking on links
       document.querySelectorAll('.kb-nav-link').forEach(link => {
         link.addEventListener('click', function() {
-          document.querySelector('.kb-sidebar').classList.remove('mobile-open');
+          sidebar.classList.remove('mobile-open');
           document.body.classList.remove('menu-open');
+        });
+      });
+      
+      // Expand/collapse submenus
+      document.querySelectorAll('.kb-nav-parent').forEach(parent => {
+        parent.addEventListener('click', function(e) {
+          e.preventDefault();
+          const submenu = this.nextElementSibling;
+          if (submenu && submenu.classList.contains('kb-submenu')) {
+            submenu.classList.toggle('expanded');
+            this.classList.toggle('expanded');
+          }
         });
       });
     });
