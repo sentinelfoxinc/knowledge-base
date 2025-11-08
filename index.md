@@ -3,6 +3,11 @@ layout: default
 title: "Home"
 ---
 
-# Welcome to Sentinelfox Knowledge Hub
+# Welcome to the Sentinelfox Knowledge Hub
 
-Use the sidebar to navigate through AWS, Terraform, and other documentation topics.
+This portal serves as the internal documentation for our Engineering & NOC teams.
+
+Use the sidebar to navigate by category.  
+Explore **AWS**, **Terraform**, and more.
+
+*Last updated: {{ site.time | date: "%B %d, %Y" }}*

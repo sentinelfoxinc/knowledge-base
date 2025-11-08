@@ -1,23 +1,21 @@
-<div id="sidebar">
-  <h3>Knowledge Hub</h3>
+<nav id="sidebar">
+  <h3>{{ site.title }}</h3>
   <ul class="menu">
-    <li><a href="{{ '/' | relative_url }}">🏠 Home</a></li>
-
-    <li class="has-submenu">
-      <a href="javascript:void(0)" class="submenu-toggle">☁️ AWS</a>
+    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+    <li>
+      <a href="javascript:void(0)" class="submenu-toggle">AWS ▾</a>
       <ul class="submenu">
         <li><a href="{{ '/aws/vpc' | relative_url }}">VPC</a></li>
         <li><a href="{{ '/aws/networking' | relative_url }}">Networking</a></li>
         <li><a href="{{ '/aws/rds' | relative_url }}">RDS</a></li>
       </ul>
     </li>
-
-    <li class="has-submenu">
-      <a href="javascript:void(0)" class="submenu-toggle">🧰 Terraform</a>
+    <li>
+      <a href="javascript:void(0)" class="submenu-toggle">Terraform ▾</a>
       <ul class="submenu">
         <li><a href="{{ '/terraform/workspace' | relative_url }}">Workspace</a></li>
         <li><a href="{{ '/terraform/statefile' | relative_url }}">State File</a></li>
       </ul>
     </li>
   </ul>
-</div>
+</nav>

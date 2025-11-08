@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const toggles = document.querySelectorAll('.submenu-toggle');
-  toggles.forEach(toggle => {
-    toggle.addEventListener('click', function() {
-      this.parentElement.classList.toggle('open');
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      const parentLi = e.target.parentElement;
+      parentLi.classList.toggle('has-open');
     });
   });
 });
