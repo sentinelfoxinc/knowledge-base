@@ -53,7 +53,7 @@ Our team works with a wide range of modern tools and platforms:
 
 ## 🔍 Our Vision
 
-“To build cloud-native ecosystems that are secure by design, cost-efficient by automation, and intelligent by architecture.”
+>  To build cloud-native ecosystems that are secure by design, cost-efficient by automation, and intelligent by architecture.
 
 We don’t just adapt to the latest technologies — we shape how they’re used to make cloud environments smarter, faster, and safer.
 
