@@ -45,17 +45,17 @@ Our strategies focus on balancing performance, cost, and sustainability without 
 
 Our team works with a wide range of modern tools and platforms:
 
-**Infrastructure & Automation:** Terraform, Ansible, Helm
-**Observability & Monitoring:** Grafana, Prometheus, New Relic
-**Security & Access:** Cloudflare Zero Trust, Twingate, AWS KMS
-**Continuous Integration & Delivery:** GitHub Actions, ArgoCD, Docker
-**Cloud Optimization:** Cloud Custodian, Komiser, OptScale
+**Infrastructure & Automation:** Terraform, Ansible, Helm.
+**Observability & Monitoring:** Grafana, Prometheus, New Relic.
+**Security & Access:** Cloudflare Zero Trust, Twingate, AWS KMS.
+**Continuous Integration & Delivery:** GitHub Actions, ArgoCD, Docker.
+**Cloud Optimization:** Cloud Custodian, Komiser, OptScale.
 
 ## 🔍 Our Vision
 
 >  To build cloud-native ecosystems that are secure by design, cost-efficient by automation, and intelligent by architecture.
 
-We don’t just adapt to the latest technologies — we shape how they’re used to make cloud environments smarter, faster, and safer.
+We don’t just adapt to the latest technologies — we **shape how they’re used** to make cloud environments smarter, faster, and safer.
 
 ## 🧩 About This Knowledge Hub
 
