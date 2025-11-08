@@ -1,8 +1,9 @@
 theme: jekyll-theme-minimal
-title: Your Knowledge Base
-description: Internal team knowledge documentation
+title: "Knowledge Base"
+description: "Internal team knowledge documentation"
+show_downloads: false
 
-# Optional: Set default layout
+# Set default layout
 defaults:
   - scope:
       path: ""
