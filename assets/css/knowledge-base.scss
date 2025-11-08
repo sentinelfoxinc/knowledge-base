@@ -158,68 +158,25 @@ body {
   margin-left: 280px;
   min-height: 100vh;
   background: #f1f5f9; // Light blue-gray background for contrast
-  padding: 2rem 0;
+  padding: 0; // Remove top/bottom padding since we're removing header
 }
 
 .kb-main-content {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem; // Reduced from 2rem to 1.5rem
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Remove header styles since we're removing the header */
 .kb-header {
-  margin-bottom: 2rem;
-  text-align: center;
+  display: none; // Hide the header completely
 }
 
 .kb-mobile-menu-btn {
-  display: none;
-  align-items: center;
-  gap: 8px;
-  background: #2d3748;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.25rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  transition: all 0.3s ease;
-}
-
-.kb-mobile-menu-btn:hover {
-  background: #4a5568;
-  transform: translateY(-1px);
-}
-
-.kb-title {
-  font-size: 2.75rem;
-  font-weight: 800;
-  color: #1e293b;
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-  background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.kb-github-link {
-  color: #64748b;
-  font-size: 0.9rem;
-}
-
-.kb-github-link a {
-  color: #3182ce;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.kb-github-link a:hover {
-  text-decoration: underline;
+  display: none; // Hide mobile menu button since we removed header
 }
 
 /* Content Card Design */
@@ -232,6 +189,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin: 0; // Remove any margin
 }
 
 .kb-article {
@@ -239,7 +197,7 @@ body {
   font-size: 16px;
   flex: 1;
   color: #374151;
-  padding: 3rem;
+  padding: 2.5rem; // Reduced padding for less gap
 }
 
 /* Enhanced Typography for Card */
@@ -286,7 +244,7 @@ body {
 }
 
 .kb-article ul, .kb-article ol {
-  margin: 1.5rem 0 1.5rem 2rem;
+  margin: 1.5rem 0 1.5rem 1.5rem; // Reduced left margin
   color: #4b5563;
 }
 
@@ -321,9 +279,9 @@ body {
   background: #1e293b;
   color: #e2e8f0;
   border-radius: 10px;
-  padding: 1.75rem;
+  padding: 1.5rem; // Reduced padding
   overflow-x: auto;
-  margin: 2rem 0;
+  margin: 1.5rem 0; // Reduced margin
   font-size: 0.9em;
   line-height: 1.5;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -341,8 +299,8 @@ body {
 
 .kb-article blockquote {
   border-left: 4px solid #3182ce;
-  padding: 1.5rem 2rem;
-  margin: 2rem 0;
+  padding: 1.25rem 1.5rem; // Reduced padding
+  margin: 1.5rem 0; // Reduced margin
   color: #475569;
   font-style: normal;
   background: #f8fafc;
@@ -359,14 +317,14 @@ body {
 .kb-article hr {
   border: none;
   border-top: 2px solid #e2e8f0;
-  margin: 3rem 0;
+  margin: 2rem 0; // Reduced margin
 }
 
 /* Table Styles */
 .kb-article table {
   width: 100%;
   border-collapse: collapse;
-  margin: 2rem 0;
+  margin: 1.5rem 0; // Reduced margin
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   overflow: hidden;
@@ -393,8 +351,8 @@ body {
 
 /* Simplified Footer Styles */
 .kb-footer {
-  margin-top: 3rem;
-  padding: 1.5rem 0;
+  margin-top: 2rem; // Reduced margin
+  padding: 1.25rem 0; // Reduced padding
   border-top: 1px solid #e2e8f0;
   background: #f8fafc;
   border-radius: 0 0 12px 12px;
@@ -402,7 +360,7 @@ body {
 
 .footer-content {
   text-align: center;
-  padding: 0 3rem;
+  padding: 0 2.5rem; // Reduced padding to match article
 }
 
 .copyright {
@@ -433,27 +391,19 @@ body {
   .kb-main {
     margin-left: 0;
     width: 100%;
-    padding: 1rem 0;
+    padding: 0;
   }
   
   .kb-main-content {
-    padding: 0 1rem;
-  }
-  
-  .kb-mobile-menu-btn {
-    display: flex;
+    padding: 0 1rem; // Reduced mobile padding
   }
   
   .kb-article {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.25rem; // Reduced mobile padding
   }
   
   body.menu-open {
     overflow: hidden;
-  }
-  
-  .kb-title {
-    font-size: 2.25rem;
   }
   
   .kb-article h1 {
@@ -465,11 +415,28 @@ body {
   }
   
   .kb-footer {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
   
   .footer-content {
-    padding: 0 1.5rem;
+    padding: 0 1.25rem; // Reduced mobile footer padding
+  }
+  
+  /* Show mobile menu button in header area */
+  .kb-mobile-menu-btn {
+    display: flex;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1002;
+    background: #2d3748;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
   }
 }
 

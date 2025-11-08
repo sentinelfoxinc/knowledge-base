@@ -57,18 +57,7 @@
       <!-- Main Content -->
       <main class="kb-main">
         <div class="kb-main-content">
-          <header class="kb-header">
-            <button class="kb-mobile-menu-btn">
-              <span>☰</span>
-              Menu
-            </button>
-            <h1 class="kb-title">{{ page.title | default: site.title }}</h1>
-            {% if site.github.is_project_page %}
-              <p class="kb-github-link"><a href="{{ site.github.repository_url }}">View on GitHub</a></p>
-            {% endif %}
-          </header>
-
-          <!-- Content Card -->
+          <!-- Content Card - Starts directly with content -->
           <div class="kb-content-card">
             <article class="kb-article">
               {{ content }}
@@ -90,10 +79,12 @@
       const mobileMenuBtn = document.querySelector('.kb-mobile-menu-btn');
       const sidebar = document.querySelector('.kb-sidebar');
       
-      mobileMenuBtn.addEventListener('click', function() {
-        sidebar.classList.toggle('mobile-open');
-        document.body.classList.toggle('menu-open');
-      });
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+          sidebar.classList.toggle('mobile-open');
+          document.body.classList.toggle('menu-open');
+        });
+      }
       
       // Close menu when clicking on links
       document.querySelectorAll('.kb-nav-link').forEach(link => {
