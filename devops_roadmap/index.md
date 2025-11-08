@@ -11,27 +11,25 @@ title: Devops Roadmap
 
 ## 📋 DevOps Module Overview
 
-
-| # | Module | Description |
-|---|---------|-------------|
-| 1 | **Linux Fundamentals** | Learn Linux commands, file systems, permissions, and process management. |
-| 2 | **Networking Basics** | Understand IPs, DNS, routing, and basic troubleshooting. |
-| 3 | 🔧 **Version Control (Git)** | Work with branches, merges, and collaborative workflows. |
-| 4 | 🐍 **Programming for Automation** | Automate tasks using Python or Bash scripting. |
-| 5 | ☁️ **Cloud Fundamentals** | Deploy and manage workloads on AWS, Azure, or GCP. |
-| 6 | 🐳 **Containerization (Docker)** | Package and run applications consistently across environments. |
-| 7 | ♾️ **CI/CD Pipelines** | Build automated pipelines for testing and deployment. |
-| 8 | ☸️ **Kubernetes (Orchestration)** | Manage and scale containerized applications in clusters. |
-| 9 | ⚙️ **Configuration Management** | Automate server configuration using tools like Ansible. |
-|10 | 🏗️ **Infrastructure as Code (Terraform)** | Provision and manage infrastructure declaratively. |
-|11 | 🧩 **Monitoring & Logging** | Observe system performance and set up alerts. |
-|12 | 🔒 **Security & Compliance** | Secure systems using IAM, encryption, and auditing. |
-|13 | 💰 **Cloud Cost Optimization** | Identify and automate cost-saving measures. |
-|14 | 🧠 **Advanced DevOps Practices** | Explore SRE, DevSecOps, and observability. |
-|15 | 🚀 **Capstone Project** | Apply all skills to deliver a full end-to-end DevOps workflow. |
+| Module | Description | Link |
+|---------|-------------|------|
+| **Linux Fundamentals** | Learn Linux commands, file systems, permissions, and process management. | [View →](/knowledge-base/devops/linux_fundamentals) |
+| **Networking Basics** | Understand IPs, DNS, routing, and basic troubleshooting. | [View →](/knowledge-base/devops/networking_basics) |
+| **Version Control (Git)** | Work with branches, merges, and collaborative workflows. | [View →](/knowledge-base/devops/version_control) |
+| **Programming for Automation** | Automate tasks using Python or Bash scripting. | [View →](/knowledge-base/devops/programming_automation) |
+| **Cloud Fundamentals** | Deploy and manage workloads on AWS, Azure, or GCP. | [View →](/knowledge-base/devops/cloud_fundamentals) |
+| **Containerization (Docker)** | Package and run applications consistently across environments. | [View →](/knowledge-base/devops/containerization) |
+| **CI/CD Pipelines** | Build automated pipelines for testing and deployment. | [View →](/knowledge-base/devops/ci_cd_pipelines) |
+| **Kubernetes (Orchestration)** | Manage and scale containerized applications in clusters. | [View →](/knowledge-base/devops/kubernetes_orchestration) |
+| **Configuration Management** | Automate server configuration using tools like Ansible. | [View →](/knowledge-base/devops/configuration_management) |
+| **Infrastructure as Code (Terraform)** | Provision and manage infrastructure declaratively. | [View →](/knowledge-base/devops/infrastructure_as_code) |
+| **Monitoring & Logging** | Observe system performance and set up alerts. | [View →](/knowledge-base/devops/monitoring_logging) |
+| **Security & Compliance** | Secure systems using IAM, encryption, and auditing. | [View →](/knowledge-base/devops/security_compliance) |
+| **Cloud Cost Optimization** | Identify and automate cost-saving measures. | [View →](/knowledge-base/devops/cloud_cost_optimization) |
 
 
-</div>
+
+
 
 
 ## 🐧 **Module 1 — Linux Fundamentals**
