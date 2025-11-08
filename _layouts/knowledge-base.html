@@ -56,8 +56,41 @@
 
       <!-- Main Content -->
       <main class="kb-main">
+        <!-- Header with Breadcrumbs and Search -->
+        <header class="kb-main-header">
+          <div class="header-content">
+            <div class="breadcrumbs">
+              <a href="{{ '/' | relative_url }}" class="breadcrumb-home">
+                <span class="breadcrumb-icon">🏠</span>
+                Home
+              </a>
+              {% if page.url != '/' %}
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">{{ page.title }}</span>
+              {% endif %}
+            </div>
+            
+            <div class="header-actions">
+              <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search knowledge base..." class="search-input">
+                <button class="search-btn">
+                  <span class="search-icon">🔍</span>
+                </button>
+                <div id="search-results" class="search-results"></div>
+              </div>
+              
+              {% if page.url != '/' %}
+              <a href="javascript:history.back()" class="back-btn">
+                <span class="back-icon">←</span>
+                Back
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </header>
+
         <div class="kb-main-content">
-          <!-- Content Card - Starts directly with content -->
+          <!-- Content Card -->
           <div class="kb-content-card">
             <article class="kb-article">
               {{ content }}
@@ -73,18 +106,34 @@
       </main>
     </div>
 
+    <!-- Search Data Storage -->
+    <script type="application/json" id="search-data">
+      [
+        {% for post in site.pages %}
+          {
+            "title": "{{ post.title | escape }}",
+            "url": "{{ post.url | relative_url }}",
+            "content": {{ post.content | strip_html | strip_newlines | jsonify }},
+            "category": "{{ post.url | split: '/' | shift | join: '/' }}"
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    </script>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Mobile menu functionality
-      const mobileMenuBtn = document.querySelector('.kb-mobile-menu-btn');
+      const mobileMenuBtn = document.createElement('button');
+      mobileMenuBtn.className = 'kb-mobile-menu-btn';
+      mobileMenuBtn.innerHTML = '☰ Menu';
+      document.querySelector('.kb-main-header').prepend(mobileMenuBtn);
+      
       const sidebar = document.querySelector('.kb-sidebar');
       
-      if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function() {
-          sidebar.classList.toggle('mobile-open');
-          document.body.classList.toggle('menu-open');
-        });
-      }
+      mobileMenuBtn.addEventListener('click', function() {
+        sidebar.classList.toggle('mobile-open');
+        document.body.classList.toggle('menu-open');
+      });
       
       // Close menu when clicking on links
       document.querySelectorAll('.kb-nav-link').forEach(link => {
@@ -92,6 +141,80 @@
           sidebar.classList.remove('mobile-open');
           document.body.classList.remove('menu-open');
         });
+      });
+
+      // Search functionality
+      const searchInput = document.getElementById('search-input');
+      const searchResults = document.getElementById('search-results');
+      const searchData = JSON.parse(document.getElementById('search-data').textContent);
+
+      function performSearch(query) {
+        if (query.length < 2) {
+          searchResults.style.display = 'none';
+          return;
+        }
+
+        const results = searchData.filter(item => {
+          const searchText = (item.title + ' ' + item.content).toLowerCase();
+          return searchText.includes(query.toLowerCase());
+        });
+
+        displayResults(results, query);
+      }
+
+      function displayResults(results, query) {
+        if (results.length === 0) {
+          searchResults.innerHTML = '<div class="search-no-results">No results found for "' + query + '"</div>';
+          searchResults.style.display = 'block';
+          return;
+        }
+
+        const resultsHtml = results.slice(0, 8).map(item => {
+          const contentPreview = item.content.toLowerCase().indexOf(query.toLowerCase()) > -1 
+            ? item.content.substring(0, 100) + '...' 
+            : item.title;
+          
+          return `
+            <a href="${item.url}" class="search-result-item">
+              <div class="search-result-title">${highlightText(item.title, query)}</div>
+              <div class="search-result-preview">${highlightText(contentPreview, query)}</div>
+            </a>
+          `;
+        }).join('');
+
+        searchResults.innerHTML = resultsHtml;
+        searchResults.style.display = 'block';
+      }
+
+      function highlightText(text, query) {
+        if (!query) return text;
+        const regex = new RegExp(`(${query})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+      }
+
+      searchInput.addEventListener('input', function() {
+        performSearch(this.value);
+      });
+
+      searchInput.addEventListener('focus', function() {
+        if (this.value.length >= 2) {
+          searchResults.style.display = 'block';
+        }
+      });
+
+      // Close search results when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('.search-container')) {
+          searchResults.style.display = 'none';
+        }
+      });
+
+      // Keyboard navigation for search results
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          searchResults.style.display = 'none';
+          this.blur();
+        }
       });
     });
     </script>
