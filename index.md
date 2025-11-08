@@ -1,38 +1,43 @@
 ---
 layout: default
 title: "Sentinelfox Knowledge Hub"
-description: "Internal documentation portal for Sentinelfox team"
 ---
 
 # 🧠 Sentinelfox Knowledge Hub
 
-Welcome to the **internal documentation portal** for the Sentinelfox Engineering and NOC teams.  
-Here you'll find our operational playbooks, incident guides, and SOPs.
+Welcome to the **Sentinelfox internal knowledge base** — your one-stop hub for operations, DevOps, and incident documentation.
 
 ---
 
-## 📘 Sections
+<div style="display: flex; flex-direction: row; gap: 2rem;">
 
-### 🏗️ Infrastructure
-- [EKS Cluster Setup](docs/infrastructure/eks-setup.md)
-- [Node Group Configuration](docs/infrastructure/node-groups.md)
-- [Storage & Backup](docs/infrastructure/storage-backup.md)
+<!-- Sidebar -->
+<div style="flex: 0 0 250px; border-right: 1px solid #ddd; padding-right: 1rem; height: 100%;">
+  <h3>📚 Documentation Index</h3>
+  <ul>
+    {% assign sorted_pages = site.pages | sort: 'title' %}
+    {% for page in sorted_pages %}
+      {% if page.title and page.url != '/' %}
+        <li><a href="{{ page.url | relative_url }}">{{ page.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
 
-### 🚨 Monitoring & Alerts
-- [Grafana Alerts](docs/monitoring/grafana-alerts.md)
-- [New Relic Metrics](docs/monitoring/newrelic.md)
-- [Incident Response SOP](docs/monitoring/incident-response.md)
+<!-- Main content -->
+<div style="flex: 1;">
+  <h2>Welcome</h2>
+  <p>Browse through our internal documentation using the sidebar on the left. You’ll find details on infrastructure, monitoring, automation, and access controls.</p>
 
-### 🔐 Access & Security
-- [Twingate Setup](docs/security/twingate.md)
-- [Cloudflare Zero Trust](docs/security/zero-trust.md)
-- [AWS IAM Practices](docs/security/aws-iam.md)
+  <h3>Recently Updated</h3>
+  <ul>
+    {% assign sorted_docs = site.pages | sort: 'date' | reverse %}
+    {% for doc in sorted_docs limit:5 %}
+      {% if doc.title and doc.url != '/' %}
+        <li><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
 
-### 🧰 DevOps Tools
-- [Terraform Modules](docs/devops/terraform-modules.md)
-- [CI/CD with GitHub Actions](docs/devops/github-actions.md)
-- [Automation Scripts](docs/devops/automation.md)
-
----
-
-📍 *Last updated:* {{ site.time | date: "%B %d, %Y" }}
+</div>
