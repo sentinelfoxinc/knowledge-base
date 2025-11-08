@@ -19,7 +19,7 @@ We work with cutting-edge technologies and cloud platforms to help businesses tr
 
 Our engineering teams specialize in four key areas:
 
-**☁️ Cloud Migration & Modernizatione**
+**☁️ Cloud Migration**
 We design and execute seamless migrations from on-premise or legacy environments to modern cloud-native platforms like AWS, Azure, and GCP.
 
 Our focus is on minimizing downtime, optimizing workloads, and ensuring high performance through automation and intelligent resource allocation.
