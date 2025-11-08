@@ -24,61 +24,26 @@
         </div>
         
         <nav class="kb-sidebar-nav">
-          <div class="nav-section">
-            <h3 class="section-title">Navigation</h3>
-            <ul>
-              <li><a href="{{ '/' | relative_url }}" class="kb-nav-link {% if page.url == '/' %}active{% endif %}">
+          <ul class="kb-nav-main">
+            <li>
+              <a href="{{ '/' | relative_url }}" class="kb-nav-link {% if page.url == '/' %}active{% endif %}">
                 <span class="nav-icon">🏠</span>
                 <span class="nav-text">Home</span>
-              </a></li>
-            </ul>
-          </div>
-
-          <div class="nav-section">
-            <h3 class="section-title">Cloud Services</h3>
-            <ul>
-              <li class="kb-nav-section">
-                <a href="#aws" class="kb-nav-parent">
-                  <span class="nav-icon">☁️</span>
-                  <span class="nav-text">AWS</span>
-                  <span class="nav-arrow">›</span>
-                </a>
-                <ul class="kb-submenu">
-                  <li><a href="{{ '/aws/vpc' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws/vpc' %}active{% endif %}">
-                    <span class="nav-icon">🔗</span>
-                    <span class="nav-text">VPC</span>
-                  </a></li>
-                  <li><a href="{{ '/aws/rds' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws/rds' %}active{% endif %}">
-                    <span class="nav-icon">💾</span>
-                    <span class="nav-text">RDS</span>
-                  </a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-
-          <div class="nav-section">
-            <h3 class="section-title">Infrastructure</h3>
-            <ul>
-              <li class="kb-nav-section">
-                <a href="#terraform" class="kb-nav-parent">
-                  <span class="nav-icon">🛠️</span>
-                  <span class="nav-text">Terraform</span>
-                  <span class="nav-arrow">›</span>
-                </a>
-                <ul class="kb-submenu">
-                  <li><a href="{{ '/terraform/workspace' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform/workspace' %}active{% endif %}">
-                    <span class="nav-icon">📁</span>
-                    <span class="nav-text">Workspace</span>
-                  </a></li>
-                  <li><a href="{{ '/terraform/state-file' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform/state-file' %}active{% endif %}">
-                    <span class="nav-icon">📄</span>
-                    <span class="nav-text">State File</span>
-                  </a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/aws' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws' %}active{% endif %}">
+                <span class="nav-icon">☁️</span>
+                <span class="nav-text">AWS</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/terraform' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform' %}active{% endif %}">
+                <span class="nav-icon">🛠️</span>
+                <span class="nav-text">Terraform</span>
+              </a>
+            </li>
+          </ul>
         </nav>
 
         <div class="kb-sidebar-footer">
@@ -109,17 +74,6 @@
 
           <footer class="kb-footer">
             <div class="footer-content">
-              <div class="footer-company">
-                <p class="company-name">SentinelFox Private Ltd</p>
-                <p class="company-tagline">Secure. Innovative. Reliable.</p>
-              </div>
-              <div class="footer-links">
-                <a href="{{ '/' | relative_url }}">Home</a>
-                <span class="divider">•</span>
-                <a href="{{ site.github.repository_url }}">GitHub</a>
-                <span class="divider">•</span>
-                <a href="#">Contact</a>
-              </div>
               <p class="copyright">© 2024 SentinelFox Private Ltd. All rights reserved.</p>
             </div>
           </footer>
@@ -143,18 +97,6 @@
         link.addEventListener('click', function() {
           sidebar.classList.remove('mobile-open');
           document.body.classList.remove('menu-open');
-        });
-      });
-      
-      // Expand/collapse submenus
-      document.querySelectorAll('.kb-nav-parent').forEach(parent => {
-        parent.addEventListener('click', function(e) {
-          e.preventDefault();
-          const submenu = this.nextElementSibling;
-          if (submenu && submenu.classList.contains('kb-submenu')) {
-            submenu.classList.toggle('expanded');
-            this.classList.toggle('expanded');
-          }
         });
       });
     });
