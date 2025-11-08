@@ -3,7 +3,7 @@ description: "Internal knowledge base for our team"
 url: "https://sentinelfoxinc.github.io"
 baseurl: "/knowledge-base"
 
-remote_theme: pages-themes/cayman@v0.2.0
+remote_theme: pages-themes/minimal@v0.2.0
 
 plugins:
   - jekyll-remote-theme
