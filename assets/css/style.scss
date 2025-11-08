@@ -152,7 +152,7 @@ body {
   color: #a0aec0;
 }
 
-/* Main Header with Breadcrumbs and Search */
+/* Main Header with Breadcrumbs and Search - FIXED */
 .kb-main-header {
   background: white;
   border-bottom: 1px solid #e2e8f0;
@@ -161,6 +161,8 @@ body {
   top: 0;
   z-index: 999;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  height: auto;
+  min-height: auto;
 }
 
 .header-content {
@@ -170,15 +172,16 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  height: auto;
 }
 
 .breadcrumbs {
   display: flex;
   align-items: center;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #64748b;
-  flex: 1;
+  flex-shrink: 0;
 }
 
 .breadcrumb-home {
@@ -189,6 +192,7 @@ body {
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .breadcrumb-home:hover {
@@ -196,40 +200,46 @@ body {
 }
 
 .breadcrumb-icon {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .breadcrumb-separator {
-  margin: 0 0.75rem;
+  margin: 0 0.5rem;
   color: #cbd5e1;
 }
 
 .breadcrumb-current {
   color: #1e293b;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
-/* Search Styles */
+/* Search Styles - FIXED */
 .search-container {
   position: relative;
   display: flex;
   align-items: center;
+  min-width: 250px;
+  max-width: 400px;
+  flex: 1;
 }
 
 .search-input {
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem;
   border: 2px solid #e2e8f0;
   border-radius: 8px 0 0 8px;
-  font-size: 0.9rem;
-  width: 300px;
+  font-size: 0.85rem;
+  width: 100%;
   transition: all 0.3s ease;
   background: white;
+  flex: 1;
 }
 
 .search-input:focus {
@@ -239,7 +249,7 @@ body {
 }
 
 .search-btn {
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem;
   background: #3182ce;
   border: 2px solid #3182ce;
   border-radius: 0 8px 8px 0;
@@ -249,6 +259,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .search-btn:hover {
@@ -257,7 +268,7 @@ body {
 }
 
 .search-icon {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .search-results {
@@ -269,16 +280,16 @@ body {
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  max-height: 400px;
+  max-height: 300px;
   overflow-y: auto;
   display: none;
   z-index: 1000;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
 }
 
 .search-result-item {
   display: block;
-  padding: 1rem;
+  padding: 0.875rem;
   border-bottom: 1px solid #f1f5f9;
   text-decoration: none;
   color: inherit;
@@ -297,17 +308,17 @@ body {
   font-weight: 600;
   color: #1e293b;
   margin-bottom: 0.25rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .search-result-preview {
   color: #64748b;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   line-height: 1.4;
 }
 
 .search-no-results {
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem;
   text-align: center;
   color: #64748b;
   font-style: italic;
@@ -325,16 +336,17 @@ mark {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   color: #475569;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 500;
   transition: all 0.3s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .back-btn:hover {
@@ -344,16 +356,18 @@ mark {
 }
 
 .back-icon {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
-/* Main Content Styles */
+/* Main Content Styles - FIXED */
 .kb-main {
   flex: 1;
   margin-left: 280px;
   min-height: 100vh;
   background: #f1f5f9;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .kb-main-content {
@@ -362,7 +376,7 @@ mark {
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  flex: 1;
   width: 100%;
 }
 
@@ -377,7 +391,7 @@ mark {
   display: flex;
   flex-direction: column;
   margin: 0;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px); /* Account for header height */
 }
 
 .kb-article {
@@ -532,7 +546,7 @@ mark {
   font-weight: 400;
 }
 
-/* Mobile Styles */
+/* Mobile Styles - FIXED */
 @media screen and (max-width: 768px) {
   .kb-container {
     flex-direction: column;
@@ -544,6 +558,8 @@ mark {
     position: fixed;
     transform: translateX(-100%);
     z-index: 1001;
+    max-height: 100vh;
+    overflow-y: auto;
   }
   
   .kb-sidebar.mobile-open {
@@ -553,6 +569,12 @@ mark {
   .kb-main {
     margin-left: 0;
     width: 100%;
+    min-height: 100vh;
+  }
+  
+  .kb-main-header {
+    position: relative;
+    padding: 0.75rem 0;
   }
   
   .header-content {
@@ -564,14 +586,28 @@ mark {
   
   .breadcrumbs {
     justify-content: center;
+    order: 2;
   }
   
   .header-actions {
-    justify-content: center;
+    justify-content: space-between;
+    order: 1;
+    gap: 0.5rem;
   }
   
-  .search-input {
-    width: 100%;
+  .search-container {
+    min-width: auto;
+    max-width: none;
+    flex: 1;
+  }
+  
+  .back-btn {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .kb-content-card {
+    min-height: auto;
   }
   
   .kb-article {
@@ -582,21 +618,21 @@ mark {
     padding: 0 1.25rem;
   }
   
-  /* Mobile menu button */
+  /* Mobile menu button - FIXED POSITION */
   .kb-mobile-menu-btn {
-    display: flex;
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1002;
+    display: flex !important;
+    align-items: center;
+    gap: 0.5rem;
     background: #2d3748;
     color: white;
     border: none;
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 1rem;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
     transition: all 0.3s ease;
+    font-size: 0.85rem;
+    flex-shrink: 0;
   }
   
   .kb-mobile-menu-btn:hover {
@@ -609,6 +645,7 @@ mark {
   
   .kb-article h1 {
     font-size: 1.875rem;
+    margin-top: 0;
   }
   
   .kb-article h2 {
@@ -618,7 +655,7 @@ mark {
 
 @media screen and (min-width: 769px) {
   .kb-mobile-menu-btn {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -655,6 +692,7 @@ mark {
   .kb-content-card {
     box-shadow: none;
     border: none;
+    min-height: auto;
   }
   
   .kb-footer {
