@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
 title: "Knowledge Base"
-description: "Internal team knowledge documentation"
+description: "Internal team knowledge documentation - AWS, Terraform, and more"
 show_downloads: false
 
 # Set default layout

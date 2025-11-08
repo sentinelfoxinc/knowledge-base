@@ -7,95 +7,98 @@
 
     {% seo %}
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <style>
+      /* Temporary inline CSS until the main CSS file is properly loaded */
+      .sidebar {
+        display: block !important;
+      }
+    </style>
     {% include head-custom.html %}
   </head>
   <body>
-    <div class="wrapper-with-sidebar">
+    <div class="page-wrapper">
       <!-- Sidebar -->
-      <div class="sidebar">
-        <div class="sidebar-content">
-          <h2 class="sidebar-title">Knowledge Base</h2>
-          <nav class="sidebar-nav">
-            <ul>
-              <li><a href="{{ '/' | relative_url }}" class="sidebar-link {% if page.url == '/' %}active{% endif %}">Home</a></li>
-              
-              <li class="sidebar-section">
-                <span class="sidebar-section-title">AWS</span>
-                <ul class="sidebar-submenu">
-                  <li><a href="{{ '/aws/vpc' | relative_url }}" class="sidebar-link {% if page.url contains '/aws/vpc' %}active{% endif %}">VPC</a></li>
-                  <li><a href="{{ '/aws/rds' | relative_url }}" class="sidebar-link {% if page.url contains '/aws/rds' %}active{% endif %}">RDS</a></li>
-                </ul>
-              </li>
-              
-              <li class="sidebar-section">
-                <span class="sidebar-section-title">Terraform</span>
-                <ul class="sidebar-submenu">
-                  <li><a href="{{ '/terraform/workspace' | relative_url }}" class="sidebar-link {% if page.url contains '/terraform/workspace' %}active{% endif %}">Workspace</a></li>
-                  <li><a href="{{ '/terraform/state-file' | relative_url }}" class="sidebar-link {% if page.url contains '/terraform/state-file' %}active{% endif %}">State File</a></li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
+      <nav class="knowledge-sidebar">
+        <div class="sidebar-header">
+          <h2>Knowledge Base</h2>
         </div>
-      </div>
-
-      <!-- Main Content -->
-      <div class="main-content-with-sidebar">
-        <header>
-          {% if site.logo %}
-            <img src="{{ site.logo | relative_url }}" alt="Logo" />
-          {% endif %}
+        <ul class="sidebar-nav">
+          <li><a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">🏠 Home</a></li>
           
-          {% if site.github.is_project_page %}
-            <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
-          {% endif %}
-
-          {% if site.github.is_user_page %}
-            <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
-          {% endif %}
-
-          {% if site.show_downloads %}
-            <ul class="downloads">
-              <li><a href="{{ site.github.zip_url }}">Download <strong>ZIP File</strong></a></li>
-              <li><a href="{{ site.github.tar_url }}">Download <strong>TAR Ball</strong></a></li>
-              <li><a href="{{ site.github.repository_url }}">View On <strong>GitHub</strong></a></li>
+          <li class="nav-section">
+            <span class="section-title">☁️ AWS</span>
+            <ul class="nav-submenu">
+              <li><a href="{{ '/aws/vpc' | relative_url }}" class="nav-link {% if page.url contains '/aws/vpc' %}active{% endif %}">VPC</a></li>
+              <li><a href="{{ '/aws/rds' | relative_url }}" class="nav-link {% if page.url contains '/aws/rds' %}active{% endif %}">RDS</a></li>
             </ul>
-          {% endif %}
-        </header>
-        
-        <section>
-          {{ content }}
-        </section>
-        
-        <footer>
-          {% if site.github.is_project_page %}
-            <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
-          {% endif %}
-          <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-        </footer>
-      </div>
+          </li>
+          
+          <li class="nav-section">
+            <span class="section-title">🛠️ Terraform</span>
+            <ul class="nav-submenu">
+              <li><a href="{{ '/terraform/workspace' | relative_url }}" class="nav-link {% if page.url contains '/terraform/workspace' %}active{% endif %}">Workspace</a></li>
+              <li><a href="{{ '/terraform/state-file' | relative_url }}" class="nav-link {% if page.url contains '/terraform/state-file' %}active{% endif %}">State File</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="knowledge-main">
+        <div class="container">
+          <header class="main-header">
+            {% if site.logo %}
+              <img src="{{ site.logo | relative_url }}" alt="Logo" class="site-logo" />
+            {% endif %}
+            
+            <h1 class="site-title">{{ site.title | default: site.github.repository_name }}</h1>
+            
+            {% if site.github.is_project_page %}
+              <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
+            {% endif %}
+          </header>
+
+          <section class="content-section">
+            {{ content }}
+          </section>
+
+          <footer class="main-footer">
+            {% if site.github.is_project_page %}
+              <p>This project is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
+            {% endif %}
+            <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+          </footer>
+        </div>
+      </main>
     </div>
 
     <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
     
-    <!-- Sidebar JavaScript -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Mobile menu toggle
-      const mobileMenuButton = document.createElement('button');
-      mobileMenuButton.className = 'mobile-menu-toggle';
-      mobileMenuButton.innerHTML = '☰ Menu';
-      document.querySelector('.main-content-with-sidebar header').prepend(mobileMenuButton);
+      // Mobile menu functionality
+      const mobileMenuBtn = document.createElement('button');
+      mobileMenuBtn.className = 'mobile-menu-btn';
+      mobileMenuBtn.innerHTML = '📚 Menu';
+      document.querySelector('.main-header').prepend(mobileMenuBtn);
       
-      mobileMenuButton.addEventListener('click', function() {
-        document.querySelector('.sidebar').classList.toggle('mobile-open');
+      mobileMenuBtn.addEventListener('click', function() {
+        document.querySelector('.knowledge-sidebar').classList.toggle('mobile-open');
       });
       
-      // Close mobile menu when clicking on a link
-      document.querySelectorAll('.sidebar-link').forEach(link => {
+      // Close menu when clicking on links
+      document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function() {
-          document.querySelector('.sidebar').classList.remove('mobile-open');
+          document.querySelector('.knowledge-sidebar').classList.remove('mobile-open');
         });
+      });
+      
+      // Auto-expand sections containing active links
+      document.querySelectorAll('.nav-link.active').forEach(activeLink => {
+        let parentSection = activeLink.closest('.nav-section');
+        if (parentSection) {
+          parentSection.classList.add('active');
+        }
       });
     });
     </script>
