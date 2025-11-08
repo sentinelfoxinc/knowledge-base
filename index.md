@@ -1,13 +1,13 @@
 ---
 layout: default
 title: "Sentinelfox Knowledge Hub"
-description: "Internal Knowledge Base for Sentinelfox Engineering and NOC Teams"
+description: "Internal documentation portal for Sentinelfox team"
 ---
 
 # 🧠 Sentinelfox Knowledge Hub
 
-Welcome to the **internal documentation portal** for the Sentinelfox team.  
-Here you'll find operational playbooks, troubleshooting steps, SOPs, and technical best practices.
+Welcome to the **internal documentation portal** for the Sentinelfox Engineering and NOC teams.  
+Here you'll find our operational playbooks, incident guides, and SOPs.
 
 ---
 
@@ -32,13 +32,6 @@ Here you'll find operational playbooks, troubleshooting steps, SOPs, and technic
 - [Terraform Modules](docs/devops/terraform-modules.md)
 - [CI/CD with GitHub Actions](docs/devops/github-actions.md)
 - [Automation Scripts](docs/devops/automation.md)
-
----
-
-## 👥 Contributors
-
-This knowledge base is maintained by the **Sentinelfox Engineering Team**.  
-To contribute, edit or add Markdown files under the `docs/` directory and open a pull request.
 
 ---
 
