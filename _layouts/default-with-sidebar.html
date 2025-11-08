@@ -7,12 +7,6 @@
 
     {% seo %}
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <style>
-      /* Temporary inline CSS until the main CSS file is properly loaded */
-      .sidebar {
-        display: block !important;
-      }
-    </style>
     {% include head-custom.html %}
   </head>
   <body>
@@ -43,14 +37,10 @@
         </ul>
       </nav>
 
-      <!-- Main Content Area -->
+      <!-- Main Content Area - FULL WIDTH -->
       <main class="knowledge-main">
         <div class="container">
           <header class="main-header">
-            {% if site.logo %}
-              <img src="{{ site.logo | relative_url }}" alt="Logo" class="site-logo" />
-            {% endif %}
-            
             <h1 class="site-title">{{ site.title | default: site.github.repository_name }}</h1>
             
             {% if site.github.is_project_page %}
@@ -91,14 +81,6 @@
         link.addEventListener('click', function() {
           document.querySelector('.knowledge-sidebar').classList.remove('mobile-open');
         });
-      });
-      
-      // Auto-expand sections containing active links
-      document.querySelectorAll('.nav-link.active').forEach(activeLink => {
-        let parentSection = activeLink.closest('.nav-section');
-        if (parentSection) {
-          parentSection.classList.add('active');
-        }
       });
     });
     </script>
