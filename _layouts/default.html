@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+</head>
+
+<body>
+  <div class="layout-wrapper">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <h3>{{ site.title }}</h3>
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+
+        <li>AWS
+          <ul>
+            <li><a href="{{ '/aws/vpc' | relative_url }}">VPC</a></li>
+            <li><a href="{{ '/aws/networking' | relative_url }}">Networking</a></li>
+            <li><a href="{{ '/aws/rds' | relative_url }}">RDS</a></li>
+          </ul>
+        </li>
+
+        <li>Terraform
+          <ul>
+            <li><a href="{{ '/terraform/workspace' | relative_url }}">Workspace</a></li>
+            <li><a href="{{ '/terraform/statefile' | relative_url }}">State File</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      {{ content }}
+    </main>
+  </div>
+</body>
+</html>
