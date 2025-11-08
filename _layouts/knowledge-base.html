@@ -58,33 +58,35 @@
       <main class="kb-main">
         <!-- Header with Breadcrumbs and Search -->
         <header class="kb-main-header">
-          <div class="header-content">
-            <div class="breadcrumbs">
-              <a href="{{ '/' | relative_url }}" class="breadcrumb-home">
-                <span class="breadcrumb-icon">🏠</span>
-                Home
-              </a>
-              {% if page.url != '/' %}
-                <span class="breadcrumb-separator">/</span>
-                <span class="breadcrumb-current">{{ page.title }}</span>
-              {% endif %}
-            </div>
-            
-            <div class="header-actions">
-              <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search knowledge base..." class="search-input">
-                <button class="search-btn">
-                  <span class="search-icon">🔍</span>
-                </button>
-                <div id="search-results" class="search-results"></div>
+          <div class="header-wrapper">
+            <div class="header-content">
+              <div class="breadcrumbs">
+                <a href="{{ '/' | relative_url }}" class="breadcrumb-home">
+                  <span class="breadcrumb-icon">🏠</span>
+                  Home
+                </a>
+                {% if page.url != '/' %}
+                  <span class="breadcrumb-separator">/</span>
+                  <span class="breadcrumb-current">{{ page.title }}</span>
+                {% endif %}
               </div>
               
-              {% if page.url != '/' %}
-              <a href="javascript:history.back()" class="back-btn">
-                <span class="back-icon">←</span>
-                Back
-              </a>
-              {% endif %}
+              <div class="header-actions">
+                <div class="search-container">
+                  <input type="text" id="search-input" placeholder="Search knowledge base..." class="search-input">
+                  <button class="search-btn">
+                    <span class="search-icon">🔍</span>
+                  </button>
+                  <div id="search-results" class="search-results"></div>
+                </div>
+                
+                {% if page.url != '/' %}
+                <a href="javascript:history.back()" class="back-btn">
+                  <span class="back-icon">←</span>
+                  Back
+                </a>
+                {% endif %}
+              </div>
             </div>
           </div>
         </header>
@@ -128,96 +130,106 @@
       
       // Insert mobile menu button at the beginning of header actions
       const headerActions = document.querySelector('.header-actions');
-      headerActions.insertBefore(mobileMenuBtn, headerActions.firstChild);
+      if (headerActions) {
+        headerActions.insertBefore(mobileMenuBtn, headerActions.firstChild);
+      }
       
       const sidebar = document.querySelector('.kb-sidebar');
       
-      mobileMenuBtn.addEventListener('click', function() {
-        sidebar.classList.toggle('mobile-open');
-        document.body.classList.toggle('menu-open');
-      });
+      if (mobileMenuBtn && sidebar) {
+        mobileMenuBtn.addEventListener('click', function() {
+          sidebar.classList.toggle('mobile-open');
+          document.body.classList.toggle('menu-open');
+        });
+      }
       
       // Close menu when clicking on links
       document.querySelectorAll('.kb-nav-link').forEach(link => {
         link.addEventListener('click', function() {
-          sidebar.classList.remove('mobile-open');
-          document.body.classList.remove('menu-open');
+          if (sidebar) {
+            sidebar.classList.remove('mobile-open');
+            document.body.classList.remove('menu-open');
+          }
         });
       });
 
       // Search functionality
       const searchInput = document.getElementById('search-input');
       const searchResults = document.getElementById('search-results');
-      const searchData = JSON.parse(document.getElementById('search-data').textContent);
+      const searchDataElement = document.getElementById('search-data');
+      
+      if (searchInput && searchResults && searchDataElement) {
+        const searchData = JSON.parse(searchDataElement.textContent);
 
-      function performSearch(query) {
-        if (query.length < 2) {
-          searchResults.style.display = 'none';
-          return;
+        function performSearch(query) {
+          if (query.length < 2) {
+            searchResults.style.display = 'none';
+            return;
+          }
+
+          const results = searchData.filter(item => {
+            const searchText = (item.title + ' ' + item.content).toLowerCase();
+            return searchText.includes(query.toLowerCase());
+          });
+
+          displayResults(results, query);
         }
 
-        const results = searchData.filter(item => {
-          const searchText = (item.title + ' ' + item.content).toLowerCase();
-          return searchText.includes(query.toLowerCase());
+        function displayResults(results, query) {
+          if (results.length === 0) {
+            searchResults.innerHTML = '<div class="search-no-results">No results found for "' + query + '"</div>';
+            searchResults.style.display = 'block';
+            return;
+          }
+
+          const resultsHtml = results.slice(0, 8).map(item => {
+            const contentPreview = item.content.toLowerCase().indexOf(query.toLowerCase()) > -1 
+              ? item.content.substring(0, 100) + '...' 
+              : item.title;
+            
+            return `
+              <a href="${item.url}" class="search-result-item">
+                <div class="search-result-title">${highlightText(item.title, query)}</div>
+                <div class="search-result-preview">${highlightText(contentPreview, query)}</div>
+              </a>
+            `;
+          }).join('');
+
+          searchResults.innerHTML = resultsHtml;
+          searchResults.style.display = 'block';
+        }
+
+        function highlightText(text, query) {
+          if (!query) return text;
+          const regex = new RegExp(`(${query})`, 'gi');
+          return text.replace(regex, '<mark>$1</mark>');
+        }
+
+        searchInput.addEventListener('input', function() {
+          performSearch(this.value);
         });
 
-        displayResults(results, query);
+        searchInput.addEventListener('focus', function() {
+          if (this.value.length >= 2) {
+            searchResults.style.display = 'block';
+          }
+        });
+
+        // Close search results when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!event.target.closest('.search-container')) {
+            searchResults.style.display = 'none';
+          }
+        });
+
+        // Keyboard navigation for search results
+        searchInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            searchResults.style.display = 'none';
+            this.blur();
+          }
+        });
       }
-
-      function displayResults(results, query) {
-        if (results.length === 0) {
-          searchResults.innerHTML = '<div class="search-no-results">No results found for "' + query + '"</div>';
-          searchResults.style.display = 'block';
-          return;
-        }
-
-        const resultsHtml = results.slice(0, 8).map(item => {
-          const contentPreview = item.content.toLowerCase().indexOf(query.toLowerCase()) > -1 
-            ? item.content.substring(0, 100) + '...' 
-            : item.title;
-          
-          return `
-            <a href="${item.url}" class="search-result-item">
-              <div class="search-result-title">${highlightText(item.title, query)}</div>
-              <div class="search-result-preview">${highlightText(contentPreview, query)}</div>
-            </a>
-          `;
-        }).join('');
-
-        searchResults.innerHTML = resultsHtml;
-        searchResults.style.display = 'block';
-      }
-
-      function highlightText(text, query) {
-        if (!query) return text;
-        const regex = new RegExp(`(${query})`, 'gi');
-        return text.replace(regex, '<mark>$1</mark>');
-      }
-
-      searchInput.addEventListener('input', function() {
-        performSearch(this.value);
-      });
-
-      searchInput.addEventListener('focus', function() {
-        if (this.value.length >= 2) {
-          searchResults.style.display = 'block';
-        }
-      });
-
-      // Close search results when clicking outside
-      document.addEventListener('click', function(event) {
-        if (!event.target.closest('.search-container')) {
-          searchResults.style.display = 'none';
-        }
-      });
-
-      // Keyboard navigation for search results
-      searchInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-          searchResults.style.display = 'none';
-          this.blur();
-        }
-      });
     });
     </script>
   </body>
