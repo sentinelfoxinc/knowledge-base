@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/knowledge-base.css?v=' | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <div class="kb-container">
+      <!-- Sidebar -->
+      <aside class="kb-sidebar">
+        <div class="kb-sidebar-header">
+          <h2>📚 Knowledge Base</h2>
+        </div>
+        <nav class="kb-sidebar-nav">
+          <ul>
+            <li><a href="{{ '/' | relative_url }}" class="kb-nav-link {% if page.url == '/' %}active{% endif %}">🏠 Home</a></li>
+            
+            <li class="kb-nav-section">
+              <div class="kb-section-header">☁️ AWS</div>
+              <ul class="kb-submenu">
+                <li><a href="{{ '/aws/vpc' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws/vpc' %}active{% endif %}">VPC</a></li>
+                <li><a href="{{ '/aws/rds' | relative_url }}" class="kb-nav-link {% if page.url contains '/aws/rds' %}active{% endif %}">RDS</a></li>
+              </ul>
+            </li>
+            
+            <li class="kb-nav-section">
+              <div class="kb-section-header">🛠️ Terraform</div>
+              <ul class="kb-submenu">
+                <li><a href="{{ '/terraform/workspace' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform/workspace' %}active{% endif %}">Workspace</a></li>
+                <li><a href="{{ '/terraform/state-file' | relative_url }}" class="kb-nav-link {% if page.url contains '/terraform/state-file' %}active{% endif %}">State File</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="kb-main">
+        <div class="kb-main-content">
+          <header class="kb-header">
+            <h1 class="kb-title">{{ page.title | default: site.title }}</h1>
+            {% if site.github.is_project_page %}
+              <p class="kb-github-link"><a href="{{ site.github.repository_url }}">View on GitHub</a></p>
+            {% endif %}
+          </header>
+
+          <article class="kb-article">
+            {{ content }}
+          </article>
+
+          <footer class="kb-footer">
+            <p><small>Hosted on GitHub Pages</small></p>
+          </footer>
+        </div>
+      </main>
+    </div>
+
+    <script>
+    // Mobile menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add mobile menu button
+      const mobileMenuBtn = document.createElement('button');
+      mobileMenuBtn.className = 'kb-mobile-menu-btn';
+      mobileMenuBtn.innerHTML = '📖 Menu';
+      document.querySelector('.kb-header').prepend(mobileMenuBtn);
+      
+      mobileMenuBtn.addEventListener('click', function() {
+        document.querySelector('.kb-sidebar').classList.toggle('mobile-open');
+        document.body.classList.toggle('menu-open');
+      });
+      
+      // Close menu when clicking on links
+      document.querySelectorAll('.kb-nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+          document.querySelector('.kb-sidebar').classList.remove('mobile-open');
+          document.body.classList.remove('menu-open');
+        });
+      });
+    });
+    </script>
+  </body>
+</html>
