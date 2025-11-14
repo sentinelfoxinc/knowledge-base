@@ -15,7 +15,7 @@ This guide provides a structured learning path with practical skills, real-world
 
 | Module | Description | Link |
 |---------|-------------|------|
-| **Linux Fundamentals** | Learn Linux commands, file systems, permissions, and process management. | [➡️](https://sentinelfoxinc.github.io/knowledge-base/devops_roadmap/linux_fundamentals.md) |
+| **Linux Fundamentals** | Learn Linux commands, file systems, permissions, and process management. | [➡️](./linux_fundamentals.md) |
 | **Networking Basics** | Understand IPs, DNS, routing, and basic troubleshooting. | [➡️](/knowledge-base/devops/networking_basics) |
 | **Version Control (Git)** | Work with branches, merges, and collaborative workflows. | [➡️](/knowledge-base/devops/version_control) |
 | **Programming Languages** | Automate tasks using Python or Bash scripting. | [➡️](/knowledge-base/devops/programming_automation) |
